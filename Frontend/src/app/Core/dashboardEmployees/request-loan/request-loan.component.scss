@@ -1,0 +1,56 @@
+tr th {
+  font-family: IRANSansWeb;
+}
+
+tr td {
+  font-family: IRANSansWeb;
+  text-align: center
+}
+
+button {
+  font-family: IRANSansWeb;
+}
+
+:host::ng-deep.ui-toast {
+  font-family: IRANSansWeb_Bold;
+  width: 40em
+}
+
+:host::ng-deep.ui-toast-summary {
+  text-align: right;
+  margin-right: 5px
+}
+
+:host::ng-deep.ui-toast-message-content {
+  text-align: right;
+  margin-right: 5px
+}
+
+.alert {
+  font-family: IRANSansWeb;
+  text-align: center
+}
+
+.bd-highlight {
+  font-family: IRANSansWeb;
+}
+
+.box {
+  border-radius: 30px;
+  border-width: medium;
+  border-style: solid;
+  border-color: black;
+  width: 60%;
+}
+
+* {
+  font-family: IRANSansWeb_Bold
+}
+
+.textDate {
+  font-family: IRANSansWeb;
+  border-style: solid;
+  border-width: thin;
+  border-color: black;
+  padding: 3px;
+}

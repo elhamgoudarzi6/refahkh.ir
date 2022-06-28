@@ -1,0 +1,110 @@
+<div class="container" dir="rtl">
+  <header class="header-main">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="4000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="w-100 logo img-responsive" src="./assets/img/header.png" alt="جهش تولید">
+
+      </div>
+
+    </div>
+  </div>
+    <nav class="mb-1 navbar navbar-expand-lg  info-color-dark text-center" dir="rtl">
+
+      <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+              aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars fa-1x"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto  " id="menu">
+          <li class="nav-item">
+            <a class="nav-link white-text" href="#" style="float: right">صفحه نخست
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link white-text" style="float: right" target="_blank" href="https://adliran.ir/Home/AboutU">اداره کل آموزش و پرورش لرستان
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link white-text" style="float: right" target="_blank" href="https://kh1-lorestan.medu.ir/fa/">اداره آموزش و پرورش ناحیه 1 خرم آباد</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link white-text" href="#">درباره ما</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+<!-- <div class="alert alert-danger text-center">مهلت ثبت تسهیلات بانکی به پایان رسید</div>-->
+<div class="d-flex justify-content-center">
+  <div style="width: 30em;">
+    <form [formGroup]="userForm">
+      <p-panel>
+        <p-header class="headerPanel">
+          فرم ورود به سیستم
+        </p-header>
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-3 text-right">
+               <label>کد پرسنلی<label style="color: red">*</label>:</label>
+            </div>
+            <div class="ui-grid-col-7">
+              <input pInputText  pKeyFilter="num" formControlName="personalCode"  [(ngModel)]="employee.personalCode" dir="ltr"/>
+
+              <!--              <input pInputText type="text" formControlName="mobile" placeholder=""/>-->
+            </div>
+<!--            <div class="ui-grid-col-4">-->
+<!--              <p-message severity="error" text="شماره همراه را صحیح وارد نمائید"-->
+<!--                         *ngIf="!userform.controls['mobile'].valid&&userform.controls['mobile'].dirty"></p-message>-->
+<!--            </div>-->
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-3 text-right">
+              <label class="text-right">کد ملی<label style="color: red">*</label>: </label>
+            </div>
+            <div class="ui-grid-col-7">
+
+<!--              <input type="password" pPassword formControlName="password" promptLabel="رمز را وارد نمائید" weakLabel="ضعیف" mediumLabel="متوسط" strongLabel="قوی" dir="ltr"/>-->
+                            <input pInputText pKeyFilter="num"  dir="ltr" formControlName="password"  [(ngModel)]="employee.password" maxlength="10" />
+            </div>
+<!--            <div class="ui-grid-col-4">-->
+<!--              <p-message severity="error" text="کد ملی را صحیح وارد نمائید "-->
+<!--                         *ngIf="!userform.controls['nationalCode'].valid&&userform.controls['nationalCode'].dirty"></p-message>-->
+<!--            </div>-->
+          </div>
+        <div class="text-center" *ngIf="successSpinner"><p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner></div>
+        </div>
+        <p-footer>
+          <button pButton type="submit" label="ورود" icon="pi pi-chevron-left" iconPos="left" (click)="onSubmit()" [disabled]="!userForm.valid"></button>
+          <div *ngIf="success" class="text-right"><p style="color: #D32F2F;font-family: IRANSansWeb">پرسنلی با این مشخصات در سامانه موجود نمی باشد.</p></div>
+
+        </p-footer>
+      </p-panel>
+    </form>
+  </div>
+</div>
+
+</header>
+
+
+  <footer class="page-footer  info-color-dark mt-2">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center  white-text" >
+  <div>
+       <sapn>تمامی حقوق مادی و معنوی این سایت متعلق به آموزش و پرورش ناحیه یک شهرستان خرم آباد می باشد. </sapn>
+  </div>
+
+      <div>
+        <span >طراحی و پیاده سازی شرکت دانش بنیان محاسبات نرم فناوری اطلاعات و ارتباطات آرکا <a
+        target="_blank" href="http://www.arkainvent.com">www.arkainvent.com</a>
+        </span>
+      </div>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+
+</div>

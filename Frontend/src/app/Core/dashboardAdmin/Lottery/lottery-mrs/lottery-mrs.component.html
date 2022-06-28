@@ -1,0 +1,31 @@
+<table class="table table-striped table-bordered ">
+  <thead>
+  <tr>
+    <th style="width: 5%" class="text-center info-color text-white">ردیف</th>
+    <th style="width: 20%" class="text-center info-color text-white">نام</th>
+    <th style="width: 10%" class="text-center info-color text-white">نام خانوادگی </th>
+    <th style="width:10%" class="text-center info-color text-white">شماره پرسنلی </th>
+    <th style="width: 10%" class="text-center info-color text-white">کد ملی </th>
+    <th style="width: 10%" class="text-center info-color text-white">شماره همراه </th>
+    <th style="width: 10%" class="text-center info-color text-white">عنوان تسهیلات  </th>
+    <th style="width: 10%" class="text-center info-color text-white">مبلغ وام </th>
+    <th style="width:10%" class="text-center info-color text-white">تعداد اقساط </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of listWin">
+    <th scope="row">1</th>
+    <td>{{item['employees'].firstName}}</td>
+    <td>{{item['employees'].lastName}}</td>
+    <td>{{item['employees'].personalCode}}</td>
+    <td>{{item['employees'].nationalCode}}</td>
+    <td>{{item['employees'].mobile}}</td>
+    <td>{{item['loans'].title}}</td>
+    <td>{{item['loans'].amount}}</td>
+    <td>{{item['loans'].number}}</td>
+  </tr>
+
+  </tbody>
+</table>
+

@@ -1,0 +1,51 @@
+:host::ng-deep .ui-card {
+  height: 100px;
+  font-family: IRANSansWeb_Bold;
+  text-align: center;
+  color: white;
+}
+
+#canvas {
+  font-family: IRANSansWeb_Bold !important;
+}
+
+:host::ng-deep.ui-panel {
+  border-radius: 50px!important;
+
+}
+
+:host::ng-deep.ui-panel-titlebar {
+  font-family: IRANSansWeb_Bold;
+  background-color: #0d5bdd !important;
+  color: white !important;
+  text-align: center!important;
+}
+:host::ng-deep.pi{  color: white !important;
+}
+.icon {
+  line-height: 1.3;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background:#fafafa;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-color:#0099CC;
+  border-width: medium;
+  border-style: solid;
+  border-radius: 50%;
+  transition-property: width;
+  transition-duration: 1s;
+  transition-delay: 0.5s;
+  transform: rotate(0);
+  transition: ease-out .9s;
+}
+.img{
+  margin-top: 5px;
+  height: 80px;
+  width: 80px;
+}
+.heading{ font-family: IRANSansWeb_Bold;}
+*{
+  cursor: pointer;
+}

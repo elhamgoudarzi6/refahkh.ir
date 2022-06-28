@@ -1,0 +1,223 @@
+<div class="text-center" *ngIf="successSpinner"><p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner></div>
+
+<p-table [value]="employeeModel" #dt [columns]="cols" [paginator]="true" [rows]="20">
+  <ng-template pTemplate="caption">
+
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr class="title-table">
+      <th style="width: 20%" class="text-center info-color text-white">ردیف</th>
+      <th style="width: 50%" class="text-center info-color text-white">کد پرسنلی</th>
+      <th style="width: 50%" class="text-center info-color text-white">نام</th>
+      <th style="width:40%" class="text-center info-color text-white">نام خانوادگی </th>
+      <th style="width: 40%" class="text-center info-color text-white">نام پدر</th>
+      <th style="width: 40%" class="text-center info-color text-white"> شماره همراه</th>
+      <th style="width: 50%" class="text-center info-color text-white">کدملی</th>
+      <th style="width: 60%" class="text-center info-color text-white"> شماره کارت </th>
+      <th style="width: 50%" class="text-center info-color text-white"> نوع استخدام </th>
+      <th style="width: 40%" class="text-center success-color text-white">ویرایش </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th *ngFor="let col of cols" [ngSwitch]="col.field" >
+        <input style="width: 100%" class="input-filter text-center" placeholder="جستجو  " *ngSwitchCase="'personalCode'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input  style="width: 100%" class="input-filter text-center" placeholder="جستجو " *ngSwitchCase="'firstName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input   style="width: 100%" class="input-filter text-center" placeholder="جستجو " *ngSwitchCase="'lastName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input   style="width: 100%" class="input-filter text-center" placeholder="جستجو " *ngSwitchCase="'fatherName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input   style="width: 100%" class="input-filter text-center" placeholder="جستجو  " *ngSwitchCase="'mobile'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input  style="width: 100%" class="input-filter text-center " placeholder="جستجو  " *ngSwitchCase="'nationalCode'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input   style="width: 100%" class="input-filter text-center" placeholder="جستجو  " *ngSwitchCase="'acountNum'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+        <input   style="width: 100%" class="input-filter text-center" placeholder="جستجو  " *ngSwitchCase="'typeEmployee'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-employee  let-rowIndex="rowIndex">
+    <tr>
+      <td class="text-center">{{rowIndex + 1}}</td>
+      <td class="text-center">{{employee.personalCode}}</td>
+      <td class="text-center">{{employee.firstName}}</td>
+      <td class="text-center">{{employee.lastName}}</td>
+      <td class="text-center">{{employee.fatherName}}</td>
+      <td class="text-center">{{employee.mobile}}</td>
+      <td class="text-center">{{employee.nationalCode}} </td>
+      <td class="text-center">{{employee.acountNum}}</td>
+      <td class="text-center">{{employee.typeEmployee}}</td>
+
+
+      <td  class="text-center" ><button class="ui-button-success" pButton type="button" label="ویرایش" icon="pi pi-pencil" iconPos="right" (click)="showDialogEdit(employee._id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+<p-dialog [(visible)]="displayEdit" [style]="{width: '50vw'}">
+  <p-header>
+    فرم ویرایش مشخصات
+  </p-header>
+  <form [formGroup]="userForm">
+
+      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-5">
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>کد پرسنلی </label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  formControlName="personalCode" [(ngModel)]="employee.personalCode" placeholder="" value="{{employee['personalCode']}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>نام </label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  formControlName="firstName" [(ngModel)]="employee.firstName" value="{{employee.firstName}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label >نام خانوادگی</label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  formControlName="lastName" [(ngModel)]="employee.lastName" value="{{employee.lastName}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                کد ملی <label style="color: red"></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  formControlName="nationalCode" [(ngModel)]="employee.nationalCode" value="{{employee.nationalCode}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>جنسیت</label>:
+              </div>
+              <div class="ui-grid-col-8 text-right">
+
+                <div class="p-col-6 mt-2 "><p-radioButton name="group2" value="آقا" formControlName="gender" [(ngModel)]="employee.gender"   label="آقا"  inputId="preopt1"></p-radioButton></div>
+                <div class="p-col-6 mt-2 "><p-radioButton name="group2" value="خانم"  formControlName="gender" [(ngModel)]="employee.gender"  label="خانم"  inputId="preopt2"></p-radioButton></div>
+
+
+                <!--                <input pInputText type="text" formControlName="gender" [(ngModel)]="employee.gender" value="{{employee.gender}}"/>-->
+              </div>
+
+          </div>
+            <div class="ui-grid-row mb-2" *ngIf="employee.gender=='خانم'">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label style="color: red">سرپرست خانواده:</label>
+              </div>
+              <div class="ui-grid-col-8 text-right d-flex">
+
+                <div class="ml-5 mt-2 "><p-radioButton name="group7" value="true" formControlName="mrshousehold" [(ngModel)]="employee.mrshousehold"   label="می باشد"  inputId="preopt1"></p-radioButton></div>
+                <div class=" mt-2 "><p-radioButton name="group7" value="false"  formControlName="mrshousehold" [(ngModel)]="employee.mrshousehold"  label="نمی باشد"  inputId="preopt2"></p-radioButton></div>
+
+
+                <!--                <input pInputText type="text" formControlName="gender" [(ngModel)]="employee.gender" value="{{employee.gender}}"/>-->
+              </div>
+            </div>
+          </div>
+          <div class="ui-grid-col-5">
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label> شماره همراه </label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="mobile" [(ngModel)]="employee.mobile" value="{{employee.mobile}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label> شماره تلفن</label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="phoneNumber" [(ngModel)]="employee.phoneNumber" value="{{employee.phoneNumber}}"/>
+              </div>
+            </div>
+
+
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>نام پدر</label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="fatherName" [(ngModel)]="employee.fatherName" value="{{employee.fatherName}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>نوع استخدامی</label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="typeEmployee"  [(ngModel)]="employee.typeEmployee" value="{{employee.typeEmployee}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <span>شماره حساب</span>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="acountNum" [(ngModel)]="employee.acountNum" value="{{employee.acountNum}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <span>وام مرابحه<label class="text-danger">*</label></span>:
+              </div>
+              <div class="ui-grid-col-8 text-right d-flex">
+
+                <div class="ml-5 mt-2 "><p-radioButton name="group4" value="true" formControlName="loanpervious" [(ngModel)]="employee.loanpervious"   label="قبلاً گرفته"  inputId="preopt1"></p-radioButton></div>
+                <div class=" mt-2 "><p-radioButton name="group4" value="false"  formControlName="loanpervious" [(ngModel)]="employee.loanpervious"  label="قبلاً نگرفته"  inputId="preopt2"></p-radioButton></div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <!--        <div class="ui-grid-col-2">-->
+          <!--          <img src="{{employee.image}}" style="height: 120px;width: 120px;border-style: solid;border-width: thin;border-color: #4c4c4c"/>-->
+          <!--        </div>-->
+        </div>
+        <div class="ui-grid-row">
+
+
+          <div class="ui-grid-col-2 text-right mt-1">
+            <label>آدرس</label>:
+          </div>
+          <div class="ui-grid-col-8 text-right">
+            <textarea [rows]="3" [cols]="30" pInputTextarea  formControlName="address" [(ngModel)]="employee.address"></textarea>
+
+          </div>
+        </div>
+
+
+          <!--        <div class="ui-grid-col-6">-->
+          <!--          <div class="ui-grid-row mb-2">-->
+          <!--            <div class="ui-grid-col-3 text-right mt-1">عکس پرسنلی:</div>-->
+          <!--            <div class="ui-grid-col-9">-->
+          <!--              <p-fileUpload name="myfile[]" customUpload="true"-->
+          <!--                            invalidFileSizeMessageDetail="حداکثر سایز عکس 2 مگابایت می باشد"-->
+          <!--                            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"-->
+          <!--                            accept="image/jpeg,image/png " maxFileSize="2000000"-->
+          <!--                            (uploadHandler)="onUpload($event)" uploadLabel="آپلود عکس" chooseLabel="انتخاب عکس"   cancelLabel="انصراف"-->
+          <!--              ></p-fileUpload>-->
+          <!--            </div>-->
+          <!--            <div class="ui-grid-col-1" [hidden]="true">-->
+          <!--              <input pInputText type="text" formControlName="image" [(ngModel)]="employee.image"/>-->
+          <!--            </div>-->
+
+          <!--          </div>-->
+          <!--        </div>-->
+
+
+      </div>
+
+
+  </form>
+  <p-footer>
+    <p-button dir="ltr" label="ویرایش " class="ui-button-success" icon="pi pi-pencil" iconPos="right" (click)="onUpdate(employee.id)"></p-button>
+  </p-footer>
+</p-dialog>

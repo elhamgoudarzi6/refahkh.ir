@@ -1,0 +1,62 @@
+<mat-sidenav-container class="sidenav-container" dir="rtl">
+  <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar class="title-sidebar">
+<!--      <div class="mr-5">{{dataRecived.personalCode}}</div>-->
+
+    </mat-toolbar>
+    <div class="title-sidebar">کد پرسنلی:{{dataRecived.personalCode}}</div>
+    <hr style="margin-top: -1px"/>
+    <mat-nav-list>
+
+      <p-accordion dir="rtl">
+        <p-accordionTab header="پیشخوان" [selected]="true" routerLink="./">
+<!--          <mat-list>-->
+<!--            <mat-list-item routerLink="./">ویرایش مشخصات</mat-list-item>-->
+<!--          </mat-list>-->
+        </p-accordionTab>
+        <p-accordionTab header="مدیریت وام و قرعه کشی">
+          <mat-list>
+            <mat-list-item [routerLink]="['./loanNew',dataRecived]">لیست درخواست ها و نتایج قرعه کشی</mat-list-item>
+          </mat-list>
+        </p-accordionTab>
+
+
+      </p-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+    <p-toolbar>
+      <div class="ui-toolbar-group-right">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <div class="pi pi-bars text-white"></div>
+        </button>
+      </div>
+
+      <div class="ui-toolbar-group-left">
+        <p-menubar [model]="items">
+          <!--          <img src="{{this.currentAdmin.data['image']}}" style="width: 45px;height:45px;border-radius: 50px">-->
+        </p-menubar>
+      </div>
+    </p-toolbar>
+
+
+    <ng-content></ng-content>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

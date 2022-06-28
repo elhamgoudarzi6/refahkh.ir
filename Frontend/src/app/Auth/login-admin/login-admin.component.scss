@@ -1,0 +1,80 @@
+:host::ng-deep.ui-inputtext{
+  font-family: IRANSansWeb_Bold!important;white-space: pre-wrap !important;
+  color: #0d47a1;
+}
+:host::ng-deep.ui-inputtext.ng-valid {
+  border: 1.3px solid #00C851 !important;
+}
+::ng-deep  .ui-inputtext.ng-dirty.ng-invalid {
+  border: 1.3px solid #ff0808!important;
+}
+:host::ng-deep.ui-panel .ui-panel-titlebar{
+  font-family: IRANSansWeb_Bold!important;
+  background-color: #0d5bdd;
+  color: #fff;
+  text-align: center;
+}
+:host::ng-deep.ui-dialog .ui-dialog-titlebar{
+  font-family: IRANSansWeb_Bold!important;
+  background-color: #0d5bdd;
+  color: #fff!important;
+  text-align: center;}
+:host::ng-deep.ui-button{
+  font-family: IRANSansWeb!important;
+  color: #fff;
+
+}
+label{ font-family: IRANSansWeb_Bold!important;}
+.ras-top{
+  margin-right: 15px;
+  border-radius: 10px!important;
+}
+.logo{
+  margin-right: 0px;
+  margin-left: 0px;
+  //padding-left: 30px;
+  border-radius: 18px;
+  width: 100%;
+}
+.container{
+  border-width: 2px;
+  margin-top: 20px;
+  border-style: solid;
+
+  border-color: #0099CC!important;
+  border-radius: 20px!important;
+}
+.header-main {
+  width: 100%;
+  /*background: #0b51c5;*/
+}
+:host::ng-deep.ui-progress-spinner {
+  text-align: center;
+  width: 30px!important;
+  height: 30px!important;}
+:host::ng-deep.ui-password-info{font-family: IRANSansWeb!important;}
+.page-footer{
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  font-family: IRANSansWeb;
+  //border-color: #0d47a1;
+  border-style: solid;
+  margin-right: -15px;
+  margin-left: -15px;
+  font-size: 13px;
+}
+#menu{
+  margin-right: 200px!important;
+}
+li a{font-family: IRANSansWeb;}
+.carousel {
+
+  margin-right: -14px!important;
+  margin-left: -15px!important;
+}
+.navbar {
+  font-size: 14px;
+  height: 50px;
+  margin-right: -14px!important;
+  margin-left: -15px!important;}
+.alert{font-family: IRANSansWeb_Bold;font-size: 14px}

@@ -1,0 +1,278 @@
+
+
+<p-toast position="top-center"></p-toast>
+<div class="alert alert-danger text-right"> کاربر محترم، برای تعریف وام جدید ابتدا مشخصات وام را به طور کامل وارد نموده، سپس روی دکمه ثبت وام جدید کلیک نمائید.</div>
+
+<form [formGroup]="loanForm">
+  <p-panel header="فرم تعریف وام جدید">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-5">
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>عنوان تسهیلات<label style="color: red"class="font-weight-bold">*</label> </label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"  formControlName="title" [(ngModel)]="loan.title" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>مبلغ وام <label style="color: red">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"  pKeyFilter="num" formControlName="amount" [(ngModel)]="loan.amount" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>تعداد اقساط<label style="color: red">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"   pKeyFilter="num" formControlName="number" [(ngModel)]="loan.number" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label> نام شعبه:<label style="color: red">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"   pKeyFilter="num" formControlName="branch" [(ngModel)]="loan.branch" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>لیزینگ:<label style="color: red">*</label></label>:
+            </div>
+
+            <div class="ui-grid-col-8 text-right d-flex">
+
+              <div class="ml-5 mt-2"><p-radioButton name="group3" value="true" formControlName="leasing" [(ngModel)]="loan.leasing"   label="می باشد"  inputId="preopt3"></p-radioButton></div>
+              <div class=" mt-2 "><p-radioButton name="group3" value="false"  formControlName="leasing" [(ngModel)]="loan.leasing"  label="نمی باشد"  inputId="preopt4"></p-radioButton></div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+        <div class="ui-grid-col-5">
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>مرابحه:<label style="color: red">*</label></label>:
+            </div>
+
+              <div class="ui-grid-col-8 text-right d-flex">
+
+                <div class="ml-5 mt-2"><p-radioButton name="group2" value="true" formControlName="morabehe" [(ngModel)]="loan.morabehe"   label="می باشد"  inputId="preopt1"></p-radioButton></div>
+                <div class=" mt-2 "><p-radioButton name="group2" value="false"  formControlName="morabehe" [(ngModel)]="loan.morabehe"  label="نمی باشد"  inputId="preopt2"></p-radioButton></div>
+
+              </div>
+
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>سقف تسهیلات<label style="color: red">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" formControlName="ceilingNum" [(ngModel)]="loan.ceilingNum"/>
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>شرط وام<label style="color: red">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" formControlName="condition" [(ngModel)]="loan.condition" />
+            </div>
+          </div>
+
+
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>درصد سود<label style="color: red">*</label> </label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" formControlName="percent" [(ngModel)]="loan.percent"/>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <p-footer>
+      <p-button label="ثبت وام جدید" class="ui-button-success" icon="pi pi-check" iconPos="right" (click)="onSubmit()" [disabled]="loanForm.invalid"></p-button>
+    </p-footer>
+  </p-panel>
+</form>
+<div>
+  <div class="alert alert-info text-right mt-1">
+    <p>1- برای حذف وام کافیست در سطر وام مورد نظر روی دکمه حذف کلیک کنید. </p>
+    <p>2- برای ویرایش مشخصات وام کافیست در سطر وام مورد نظر روی دکمه ویرایش کلیک کنید.</p>
+  </div>
+  <p-table [value]="loanModel" #dt [columns]="cols" [paginator]="true" [rows]="20">
+  <ng-template pTemplate="caption">
+
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr class="title-table">
+      <th style="width: 20%" class="text-center info-color text-white">ردیف</th>
+      <th style="width: 70%" class="text-center info-color text-white">عنوان تسهیلات</th>
+      <th style="width: 70%" class="text-center info-color text-white">مبلغ وام </th>
+      <th style="width:40%" class="text-center info-color text-white">تعداد اقساط </th>
+      <th style="width: 40%" class="text-center info-color text-white">سقف تسهيلات </th>
+      <th style="width: 40%" class="text-center info-color text-white">شرط وام  </th>
+      <th style="width: 40%" class="text-center info-color text-white"> درصد سود</th>
+      <th style="width: 40%" class="text-center success-color text-white">ویرایش وام</th>
+      <th style="width: 40%" class="text-center danger-color text-white">حذف وام</th>
+    </tr>
+
+  </ng-template>
+  <ng-template pTemplate="body" let-loan let-count let-rowIndex="rowIndex">
+    <tr>
+      <td class="text-center">{{rowIndex + 1}}</td>
+      <td class="text-center">{{loan.title}}</td>
+      <td class="text-center">{{loan.amount}}</td>
+      <td class="text-center">{{loan.number}}</td>
+      <td class="text-center">{{loan.ceilingNum}} نفر</td>
+      <td class="text-center">{{loan.condition}}</td>
+      <td class="text-center">{{loan.percent}}</td>
+
+      <td  class="text-center" ><button class="ui-button-success" pButton type="button" label="ویرایش" icon="pi pi-pencil" iconPos="right" (click)="showDialogEdit(loan._id)"></button>
+      </td>
+      <td  class="text-center" ><button class="ui-button-danger" pButton type="button" label="حذف" icon="pi pi-trash" iconPos="right" (click)="showDialog(loan._id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+</div>
+
+<p-dialog [(visible)]="display" [transitionOptions]="'3ms'">
+  <p-header>
+    حذف وام
+  </p-header>
+  <p id="text-delete-dialog">کاربر محترم از حذف وام مطمئین هستید؟
+  </p>
+  <br>
+
+  <p-footer>
+    <button class="ui-button-info ml-auto" pButton type="button" icon="pi pi-check" iconPos="right" label="بله" (click)="onDelete()"></button>
+    <button class="ui-button-danger" pButton type="button" label="خیر" icon="pi pi-times" iconPos="right" style="float: left" (click)="showDialog('1')"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="displayEdit" [style]="{width: '60vw'}">
+  <p-header>
+    فرم ویرایش مشخصات وام
+  </p-header>
+  <form [formGroup]="loanForm">
+
+      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-5">
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>عنوان تسهیلات<label style="color: red"class="font-weight-bold">*</label> </label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  formControlName="title" [(ngModel)]="loan.title" value="{{loan.title}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>مبلغ وام <label style="color: red">*</label></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"  pKeyFilter="num" formControlName="amount" [(ngModel)]="loan.amount" value="{{loan.amount}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>تعداد اقساط<label style="color: red">*</label></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"   pKeyFilter="num" formControlName="number" [(ngModel)]="loan.number" value="{{loan.number}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label> نام شعبه:<label style="color: red">*</label></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text"   pKeyFilter="num" formControlName="branch" [(ngModel)]="loan.branch" value="{{loan.branch}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>لیزینگ:<label style="color: red">*</label></label>:
+              </div>
+
+              <div class="ui-grid-col-8 text-right d-flex">
+
+                <div class="ml-5 mt-2"><p-radioButton name="group3" value="true" formControlName="leasing" [(ngModel)]="loan.leasing"   label="می باشد"  inputId="preopt3"></p-radioButton></div>
+                <div class=" mt-2 "><p-radioButton name="group3" value="false"  formControlName="leasing" [(ngModel)]="loan.leasing"  label="نمی باشد"  inputId="preopt4"></p-radioButton></div>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+          <div class="ui-grid-col-5">
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>مرابحه:<label style="color: red">*</label></label>:
+              </div>
+
+              <div class="ui-grid-col-8 text-right d-flex">
+
+                <div class="ml-5 mt-2"><p-radioButton name="group2" value="true" formControlName="morabehe" [(ngModel)]="loan.morabehe"   label="می باشد"  inputId="preopt1"></p-radioButton></div>
+                <div class=" mt-2 "><p-radioButton name="group2" value="false"  formControlName="morabehe" [(ngModel)]="loan.morabehe"  label="نمی باشد"  inputId="preopt2"></p-radioButton></div>
+
+              </div>
+
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>سقف تسهیلات<label style="color: red">*</label></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="ceilingNum" [(ngModel)]="loan.ceilingNum" value="{{loan.ceilingNum}}"/>
+              </div>
+            </div>
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>شرط وام<label style="color: red">*</label></label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="condition" [(ngModel)]="loan.condition" value="{{loan.condition}}"/>
+              </div>
+            </div>
+
+
+            <div class="ui-grid-row mb-2">
+              <div class="ui-grid-col-4 text-right mt-1">
+                <label>درصد سود<label style="color: red">*</label> </label>:
+              </div>
+              <div class="ui-grid-col-8">
+                <input pInputText type="text" formControlName="percent" [(ngModel)]="loan.percent" value="{{loan.percent}}"/>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+  </form>
+  <p-footer>
+    <p-button label="ویرایش وام " class="ui-button-success" icon="pi pi-pencil" iconPos="right" (click)="onUpdate()" [disabled]="loanForm.invalid"></p-button>
+  </p-footer>
+</p-dialog>

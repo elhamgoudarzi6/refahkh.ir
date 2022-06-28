@@ -1,0 +1,46 @@
+<div class="alert alert-warning text-right">برای قرعه کشی هر وام،کافی ست برای هر وام روی دکمه شروع قرعه کشی کلیک نماید، سیستم به صورت تصادفی به تعداد مورد نظر انتخاب می کند</div>
+
+<div class="ui-grid-row p-dir-rev mt-1" dir="rtl">
+  <div class="ui-grid-col-4  float-right">
+     <label>عنوان تسهیلات:</label>
+    <p-dropdown dir="rtl" [options]="mardak" [(ngModel)]="loanForm.loanID" [showTransitionOptions]="'1ms'"  [hideTransitionOptions]="'1ms'"   [filter]="true" [style]="{'width':'250px'}"></p-dropdown>
+  </div>
+  <div class="ui-grid-col-4 float-right">
+    <label  class="ml-4">تعداد:</label>
+    <input type="text" pKeyFilter="num" [style]="{'width':'50px'}" [(ngModel)]="loanForm.number" >
+    <label  class="mr-2 text-danger">نفر</label>
+  </div>
+  <div class="ui-grid-col-3 mb-1 float-right">
+    <button pButton type="button" label="شروع قرعه کشی" (click)="onRequestWin()"></button>
+  </div>
+</div>
+
+<div class="alert alert-primary text-center">نتایج قرعه کشی</div>
+<div class="text-center" *ngIf="successSpinner"><p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner></div>
+<div class="row" *ngIf="activeResultWin">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <table class="table table-striped">
+      <thead class="">
+      <tr>
+        <th scope="col">ردیف</th>
+        <th scope="col">کد پرسنلی</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of resultWin;let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.personalCode}}</td>
+
+      </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="col-md-4 text-center"><button class="p-button-success" pButton type="button" label="ثبت قرعه کشی" (click)="onSetFinalWin()"></button></div>
+</div>
+<p-toast position="top-center"></p-toast>

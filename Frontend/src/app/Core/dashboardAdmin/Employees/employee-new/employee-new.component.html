@@ -1,0 +1,164 @@
+
+<div class="alert alert-danger text-right"> کاربر محترم، برای تعریف پرسنل جدید ابتدا مشخصات پرسنلی را به طور کامل وارد نموده، سپس روی دکمه ثبت پرسنل جدید کلیک نمائید.</div>
+
+<p-toast position="top-center"></p-toast>
+<form [formGroup]="userForm">
+  <p-panel header="فرم تعریف پرسنل جدید">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 5px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-5">
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>کد پرسنلی <label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" pKeyFilter="num" formControlName="personalCode" [(ngModel)]="employee.personalCode" placeholder="" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>نام <label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"  formControlName="firstName" [(ngModel)]="employee.firstName" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>نام خانوادگی<label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text"  formControlName="lastName" [(ngModel)]="employee.lastName" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>کد ملی</label> <label class="text-danger">*</label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" pKeyFilter="num" formControlName="nationalCode" [(ngModel)]="employee.nationalCode" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>جنسیت<label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8 text-right d-flex">
+
+              <div class="ml-5 mt-2 "><p-radioButton name="group2" value="آقا" formControlName="gender" [(ngModel)]="employee.gender"   label="آقا"  inputId="preopt1"></p-radioButton></div>
+              <div class=" mt-2 "><p-radioButton name="group2" value="خانم"  formControlName="gender" [(ngModel)]="employee.gender"  label="خانم"  inputId="preopt2"></p-radioButton></div>
+
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2" *ngIf="employee.gender=='خانم'">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label style="color: red">سرپرست خانواده:</label>
+            </div>
+            <div class="ui-grid-col-8 text-right d-flex">
+
+              <div class="ml-5 mt-2 "><p-radioButton name="group3" value="true" formControlName="mrshousehold" [(ngModel)]="employee.mrshousehold"   label="می باشد"  inputId="preopt1"></p-radioButton></div>
+              <div class=" mt-2 "><p-radioButton name="group3" value="false"  formControlName="mrshousehold" [(ngModel)]="employee.mrshousehold"  label="نمی باشد"  inputId="preopt2"></p-radioButton></div>
+
+
+              <!--                <input pInputText type="text" formControlName="gender" [(ngModel)]="employee.gender" value="{{employee.gender}}"/>-->
+            </div>
+          </div>
+        </div>
+        <div class="ui-grid-col-5">
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>شماره همراه<label class="text-danger">*</label>  </label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" pKeyFilter="num" formControlName="mobile" [(ngModel)]="employee.mobile" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label> شماره تلفن<label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" pKeyFilter="num" formControlName="phoneNumber" [(ngModel)]="employee.phoneNumber" />
+            </div>
+          </div>
+
+
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>نام پدر<label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" formControlName="fatherName" [(ngModel)]="employee.fatherName" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <label>نوع استخدامی<label class="text-danger">*</label></label>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" formControlName="typeEmployee"  [(ngModel)]="employee.typeEmployee" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <span>شماره حساب<label class="text-danger">*</label></span>:
+            </div>
+            <div class="ui-grid-col-8">
+              <input pInputText type="text" pKeyFilter="num" formControlName="acountNum" [(ngModel)]="employee.acountNum" />
+            </div>
+          </div>
+          <div class="ui-grid-row mb-2">
+            <div class="ui-grid-col-4 text-right mt-1">
+              <span>وام مرابحه<label class="text-danger">*</label></span>:
+            </div>
+            <div class="ui-grid-col-8 text-right d-flex">
+
+              <div class="ml-5 mt-2 "><p-radioButton name="group4" value="true" formControlName="loanpervious" [(ngModel)]="employee.loanpervious"   label="قبلاً گرفته"  inputId="preopt1"></p-radioButton></div>
+              <div class=" mt-2 "><p-radioButton name="group4" value="false"  formControlName="loanpervious" [(ngModel)]="employee.loanpervious"  label="قبلاً نگرفته"  inputId="preopt2"></p-radioButton></div>
+
+
+            </div>
+          </div>
+        </div>
+        <!--        <div class="ui-grid-col-2">-->
+        <!--          <img src="{{employee.image}}" style="height: 120px;width: 120px;border-style: solid;border-width: thin;border-color: #4c4c4c"/>-->
+        <!--        </div>-->
+      </div>
+      <div class="ui-grid-row">
+
+
+        <div class="ui-grid-col-2 text-right mt-1">
+          <label>آدرس</label>:
+        </div>
+        <div class="ui-grid-col-8 text-right">
+          <textarea [rows]="3" [cols]="30" pInputTextarea  formControlName="address" [(ngModel)]="employee.address"></textarea>
+
+        </div>
+
+
+
+        <!--        <div class="ui-grid-col-6">-->
+        <!--          <div class="ui-grid-row mb-2">-->
+        <!--            <div class="ui-grid-col-3 text-right mt-1">عکس پرسنلی:</div>-->
+        <!--            <div class="ui-grid-col-9">-->
+        <!--              <p-fileUpload name="myfile[]" customUpload="true"-->
+        <!--                            invalidFileSizeMessageDetail="حداکثر سایز عکس 2 مگابایت می باشد"-->
+        <!--                            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"-->
+        <!--                            accept="image/jpeg,image/png " maxFileSize="2000000"-->
+        <!--                            (uploadHandler)="onUpload($event)" uploadLabel="آپلود عکس" chooseLabel="انتخاب عکس"   cancelLabel="انصراف"-->
+        <!--              ></p-fileUpload>-->
+        <!--            </div>-->
+        <!--            <div class="ui-grid-col-1" [hidden]="true">-->
+        <!--              <input pInputText type="text" formControlName="image" [(ngModel)]="employee.image"/>-->
+        <!--            </div>-->
+
+        <!--          </div>-->
+        <!--        </div>-->
+
+      </div>
+    </div>
+    <p-footer>
+      <p-button label="ثبت پرسنل جدید" class="ui-button-success" icon="pi pi-pencil" [disabled]="userForm.invalid" iconPos="right" (click)="onSubmited()"></p-button>
+    </p-footer>
+  </p-panel>
+</form>

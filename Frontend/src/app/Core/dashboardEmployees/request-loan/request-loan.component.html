@@ -1,0 +1,100 @@
+<p-toast position="top-center"></p-toast>
+
+<table class="table table-striped table-bordered ">
+  <thead>
+  <tr>
+    <th style="width: 5%" class="text-center info-color text-white">ردیف</th>
+    <th style="width: 20%" class="text-center info-color text-white">عنوان تسهیلات</th>
+    <th style="width: 10%" class="text-center info-color text-white">مبلغ وام</th>
+    <th style="width:10%" class="text-center info-color text-white">تعداد اقساط</th>
+    <th style="width: 10%" class="text-center info-color text-white">سقف تسهيلات</th>
+    <th style="width: 10%" class="text-center info-color text-white">شرط وام</th>
+    <th style="width: 10%" class="text-center info-color text-white"> درصد سود</th>
+        <th style="width: 10%" class="text-center info-color text-white"> حذف</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngIf="deleteActive">
+    <th scope="row">1</th>
+    <td>{{requestLoanModel['title']}}</td>
+    <td>{{requestLoanModel['amount']}}</td>
+    <td>{{requestLoanModel['number']}}</td>
+    <td>{{requestLoanModel['ceilingNum']}} نفر</td>
+    <td>{{requestLoanModel['condition']}}</td>
+    <td>{{requestLoanModel['percent']}}</td>
+        <td  class="text-center" ><button class="pi-button-success" pButton type="button" label="حذف" icon="pi pi-trash" iconPos="right" (click)="onDelete()"></button>
+  </tr>
+
+  </tbody>
+</table>
+
+<!--<div class="alert alert-warning text-center" *ngIf="messageNo">همکار گرامی با توجه به قرعه کشی انجام شده، تسهیلات-->
+<!--  مورد نظر به شما تعلق نگرفته است-->
+<!--</div>-->
+<div *ngIf="message">
+  <div class="alert alert-warning text-center" *ngIf="message">
+    همکار گرامی در تاریخ درج شده در معرفی نامه به بانک عامل مراجعه کنید.
+  </div>
+
+  <div id="printSectionId">
+    <div class="d-flex flex-column bd-highlight mb-3 text-center">
+      <div class="p-2 bd-highlight text-center"><img src="./assets/img/arm.png"/></div>
+      <div class="p-2 bd-highlight d-flex  flex-row " dir="rtl" style="margin-top: -10px">
+        <div  style="margin-right:470px"><label>وزارت آموزش و پرورش</label></div>
+        <div  style="margin-right:170px"><label class="textDate" >تاریخ مراجعه :<label>{{resultData['date']}}</label></label></div>
+
+      </div>
+      <div class="p-2 bd-highlight" style="margin-top: -30px"><label>اداره کل آموزش و پرورش استان لرستان </label></div>
+      <div class="p-2 bd-highlight" style="margin-top: -15px"><label>مدیریت آموزش و پرورش ناحیه یک خرم آباد</label>
+      </div>
+      <div class="p-2 bd-highlight">
+        <hr style="border-width: thin;border-style: solid;border-color: #000;width: 60%;margin-top: -20px"/>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row  bd-highlight justify-content-center" style="margin-top: -30px">
+      <div class="p-2 box">
+        <div class="d-flex flex-column bd-highlight mb-3 text-center" dir="rtl">
+          <div class="p-2 bd-highlight d-flex justify-content-center">
+            <div class=" text-center"><label>بسمی تعالی</label></div>
+          </div>
+          <div class="p-2 bd-highlight text-right">از : <label>مدیریت آموزش و پرورش ناحیه یک خرم آباد</label></div>
+          <div class="p-2 bd-highlight text-right">به : <label>بانک ملی شعبه شفا</label></div>
+          <div class="p-2 bd-highlight text-right">موضوع : <label>معرفی نامه</label></div>
+          <div class="p-2 bd-highlight text-right"><label>با سلام</label></div>
+          <div class="p-2 bd-highlight text-right">به استحضار می رساند آقا/خانم :
+            <label>{{firstName}} {{lastName}}</label></div>
+          <div class="p-2 bd-highlight" style="text-align: justify;text-justify: inter-word;"> با کد پرسنلی
+            <label>{{dataRecived.personalCode}}</label> جهت دریافت
+            <label>{{titleLoan}}</label> بانک ملی به مبلغ <label>{{requestLoanModel['amount']}}</label>
+            معرفی می گردد. شایسته است در این
+            زمینه مساعدت لازم را مبذول فرمایید.
+          </div>
+          <div class="p-2 bd-highlight mt-5"><label>فرشاد نادری</label></div>
+          <div class="p-2 bd-highlight"><img src="./assets/img/em2.png"
+                                             style="height: 150px;width: 180px;z-index: 99999;margin-top: -100px"></div>
+          <div class=" bd-highlight" style="margin-top: -60px"><label>کارشناس مسئول تعاون و امور رفاهی</label></div>
+          <div class=" bd-highlight text-right mt-5">لطفاً قبل از تاریخ درج شده در معرفی نامه به بانک عامل مراجعه
+            ننمایید.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column bd-highlight mb-3 text-center">
+      <div class="p-2 bd-highlight">آدرس : خرم آباد ، میدان مادر ، آموزش و پرورش ناحیه یک خرم آباد تلفن : 33200465 فکس
+        33200371
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button pButton type="button" [useExistingCss]="true" label="چاپ معرفی نامه" printSectionId="printSectionId"
+            ngxPrint
+            icon="pi pi-print" iconPos="right"></button>
+  </div>
+</div>
+<div class="text-center mt-5">
+  <p-progressSpinner *ngIf="spinnerSuccess" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE"
+                     animationDuration=".5s"></p-progressSpinner>
+</div>
